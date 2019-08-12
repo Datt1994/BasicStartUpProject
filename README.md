@@ -4,11 +4,13 @@ Basic StartUp Project for Swift
 
 ## Usage 
 
+[Rename Project](https://github.com/Datt1994/xcode-project-renamer)
+
 ```bash
 # Xcode project directory
 $ cd ../BasicStartUpProject
 
-# run script ($OLD_PROJECT_NAME = BasicStartUpProject) (https://github.com/Datt1994/xcode-project-renamer) 
+# run script ($OLD_PROJECT_NAME = BasicStartUpProject)  
 # replaces all occurrences of **$OLD_PROJECT_NAME** string with **$NEW_PROJECT_NAME** string
 $ ./rename.swift "$OLD_PROJECT_NAME" "$NEW_PROJECT_NAME"
 

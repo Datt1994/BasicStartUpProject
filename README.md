@@ -4,7 +4,9 @@ Basic StartUp Project for Swift
 
 ## Usage 
 
-[Rename Project](https://github.com/Datt1994/xcode-project-renamer)
+- Clone this Project
+
+- [Rename Project](https://github.com/Datt1994/xcode-project-renamer)
 
 ```bash
 # Xcode project directory

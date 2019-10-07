@@ -20,10 +20,10 @@ struct Utility {
         DispatchQueue.main.async {
             hud.removeFromSuperview()
 //            UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            hud = MBProgressHUD.showAdded(to: Constants.keyWindow!, animated: true)
+            hud = MBProgressHUD.showAdded(to: UIApplication.shared.windows.first!, animated: true)
 //            hud.dimBackground = true
 //            hud.color = .themeSelectedRed()
-            Constants.keyWindow?.addSubview(hud)
+//             Constants.keyWindow?.addSubview(hud)
             hud.mode = .indeterminate
         }
     }

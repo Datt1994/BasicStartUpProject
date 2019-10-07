@@ -1,9 +1,9 @@
 //
 //  IntExtensions.swift
-//  
+//  coinbidz
 //
 //  Created by datt on 03/01/18.
-//  Copyright © 2018 Datt. All rights reserved.
+//  Copyright © 2018 zaptechsolutions. All rights reserved.
 //
 
 import CoreGraphics
@@ -12,42 +12,42 @@ import CoreGraphics
 public extension Int {
 	
 	/// : CountableRange 0..<Int.
-	public var countableRange: CountableRange<Int> {
+	var countableRange: CountableRange<Int> {
 		return 0..<self
 	}
 	
 	/// : Radian value of degree input.
-	public var degreesToRadians: Double {
+	var degreesToRadians: Double {
 		return Double.pi * Double(self) / 180.0
 	}
 	
 	/// : Degree value of radian input
-	public var radiansToDegrees: Double {
+	var radiansToDegrees: Double {
 		return Double(self) * 180 / Double.pi
 	}
 	
 	/// : UInt.
-	public var uInt: UInt {
+	var uInt: UInt {
 		return UInt(self)
 	}
 	
 	/// : Double.
-	public var double: Double {
+	var double: Double {
 		return Double(self)
 	}
 	
 	/// : Float.
-	public var float: Float {
+	var float: Float {
 		return Float(self)
 	}
 	
 	/// : CGFloat.
-	public var cgFloat: CGFloat {
+	var cgFloat: CGFloat {
 		return CGFloat(self)
 	}
 	
 	/// : String formatted for values over ±1000 (example: 1k, -2k, 100k, 1kk, -5kk..)
-	public var kFormatted: String {
+	var kFormatted: String {
 		var sign: String {
 			return self >= 0 ? "" : "-"
 		}
@@ -73,7 +73,7 @@ public extension Int {
 	///   - min: minimum number to start random from.
 	///   - max: maximum number random number end before.
 	/// - Returns: random double between two double values.
-	public static func random(between min: Int, and max: Int) -> Int {
+	static func random(between min: Int, and max: Int) -> Int {
 		return random(inRange: min...max)
 	}
 	
@@ -81,7 +81,7 @@ public extension Int {
 	///
 	/// - Parameter range: closed interval range.
 	/// - Returns: random double in the given closed range.
-	public static func random(inRange range: ClosedRange<Int>) -> Int {
+	static func random(inRange range: ClosedRange<Int>) -> Int {
 		let delta = UInt32(range.upperBound - range.lowerBound + 1)
 		return range.lowerBound + Int(arc4random_uniform(delta))
 	}
@@ -89,7 +89,7 @@ public extension Int {
 	/// : check if given integer prime or not.
 	/// Warning: Using big numbers can be computationally expensive!
 	/// - Returns: true or false depending on prime-ness
-	public func isPrime() -> Bool {
+	func isPrime() -> Bool {
 		// To improve speed on latter loop :)
 		if self == 2 {
 		    return true
@@ -114,7 +114,7 @@ public extension Int {
 	///		10.romanNumeral() -> "X"
 	///
 	/// - Returns: The roman numeral string.
-	public func romanNumeral() -> String? {
+	func romanNumeral() -> String? {
 		// https://gist.github.com/kumo/a8e1cb1f4b7cff1548c7
 		guard self > 0 else { // there is no roman numerals for 0 or negative numbers
 			return nil
@@ -148,14 +148,14 @@ public extension Int {
 	/// - Parameters:
 	///   - min: minimum number to start random from.
 	///   - max: maximum number random number end before.
-	public init(randomBetween min: Int, and max: Int) {
+	init(randomBetween min: Int, and max: Int) {
 		self = Int.random(between: min, and: max)
 	}
 	
 	/// : Create a random integer in a closed interval range.
 	///
 	/// - Parameter range: closed interval range.
-	public init(randomInRange range: ClosedRange<Int>) {
+	init(randomInRange range: ClosedRange<Int>) {
 		self = Int.random(inRange: range)
 	}
 	

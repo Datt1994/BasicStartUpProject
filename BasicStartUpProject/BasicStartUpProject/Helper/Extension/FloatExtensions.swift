@@ -1,9 +1,9 @@
 //
 //  FloatExtensions.swift
-//  
+//  coinbidz
 //
 //  Created by datt on 03/01/18.
-//  Copyright © 2018 Datt. All rights reserved.
+//  Copyright © 2018 zaptechsolutions. All rights reserved.
 //
 
 import CoreGraphics
@@ -12,17 +12,17 @@ import CoreGraphics
 public extension Float {
 	
 	/// : Int.
-	public var int: Int {
+	var int: Int {
 		return Int(self)
 	}
 	
 	/// : Double.
-	public var double: Double {
+	var double: Double {
 		return Double(self)
 	}
 	
 	/// : CGFloat.
-	public var cgFloat: CGFloat {
+	var cgFloat: CGFloat {
 		return CGFloat(self)
 	}
 	

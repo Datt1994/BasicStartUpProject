@@ -1,9 +1,9 @@
 //
 //  DoubleExtensions.swift
-//  
+//  coinbidz
 //
 //  Created by datt on 03/01/18.
-//  Copyright © 2018 Datt. All rights reserved.
+//  Copyright © 2018 zaptechsolutions. All rights reserved.
 //
 
 import CoreGraphics
@@ -12,17 +12,17 @@ import CoreGraphics
 public extension Double {
 	
 	/// : Int.
-	public var int: Int {
+	var int: Int {
 		return Int(self)
 	}
 	
 	/// : Float.
-	public var float: Float {
+	var float: Float {
 		return Float(self)
 	}
 	
 	/// : CGFloat.
-	public var cgFloat: CGFloat {
+	var cgFloat: CGFloat {
 		return CGFloat(self)
 	}
 	

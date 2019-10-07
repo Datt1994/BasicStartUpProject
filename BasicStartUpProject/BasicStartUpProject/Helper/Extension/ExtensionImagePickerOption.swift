@@ -154,16 +154,17 @@ extension ChoosePicture where Self: UIViewController ,Self: UIImagePickerControl
     
     func choosePhotoAndVideo(_ allowsEditing : Bool = false , isPhoto : Bool,isVideo : Bool)  {
         func openImagePickerController() {
-            let imagePickerController = UIImagePickerController()
-            imagePickerController.sourceType = .photoLibrary
-            if isPhoto && isVideo {
-                imagePickerController.mediaTypes = ["public.image","public.movie"]
-            } else if isVideo {
-                imagePickerController.mediaTypes = ["public.movie"]
-            }
-            imagePickerController.delegate = self
-            imagePickerController.allowsEditing = allowsEditing
             DispatchQueue.main.async {
+                let imagePickerController = UIImagePickerController()
+                imagePickerController.sourceType = .photoLibrary
+                if isPhoto && isVideo {
+                    imagePickerController.mediaTypes = ["public.image","public.movie"]
+                } else if isVideo {
+                    imagePickerController.mediaTypes = ["public.movie"]
+                }
+                imagePickerController.delegate = self
+                imagePickerController.allowsEditing = allowsEditing
+                
                 self.present(imagePickerController, animated: true, completion: {() -> Void in
                 })
             }

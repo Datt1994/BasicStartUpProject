@@ -1,15 +1,20 @@
 PODS:
   - MBProgressHUD (0.9.2)
-  - Toast-Swift (4.0.1)
+  - Toast-Swift (5.0.0)
 
 DEPENDENCIES:
   - MBProgressHUD (~> 0.9.2)
-  - Toast-Swift (~> 4.0.1)
+  - Toast-Swift
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - MBProgressHUD
+    - Toast-Swift
 
 SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
+  Toast-Swift: 36f4720243c8582c2be243a60a51e193c761f541
 
-PODFILE CHECKSUM: e36d172d910ad59ddaa23bfd6edab55182638161
+PODFILE CHECKSUM: ca2bd28ffc5accec480fba59c57a7c8e0255b2c5
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.7.5

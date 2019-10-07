@@ -115,7 +115,7 @@ private let kPlaceholderTextViewInsetSpan: CGFloat = 8
         
         // adjust typing and selection attributes
         if let paragraphStyle = typingAttributes[NSAttributedString.Key.paragraphStyle] as? NSParagraphStyle {
-            baseRect.offsetBy(dx: paragraphStyle.headIndent, dy: paragraphStyle.firstLineHeadIndent)
+            _ = baseRect.offsetBy(dx: paragraphStyle.headIndent, dy: paragraphStyle.firstLineHeadIndent)
         }
         
         return baseRect

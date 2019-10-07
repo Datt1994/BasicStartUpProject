@@ -19,20 +19,20 @@ struct Utility {
     func showLoader() {
         DispatchQueue.main.async {
             hud.removeFromSuperview()
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow!, animated: true)
+//            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            hud = MBProgressHUD.showAdded(to: Constants.keyWindow!, animated: true)
 //            hud.dimBackground = true
 //            hud.color = .themeSelectedRed()
-            UIApplication.shared.keyWindow?.addSubview(hud)
+            Constants.keyWindow?.addSubview(hud)
             hud.mode = .indeterminate
         }
     }
 
     func hideLoader() {
         DispatchQueue.main.async {
-            if UIApplication.shared.isNetworkActivityIndicatorVisible {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            }
+//            if UIApplication.shared.isNetworkActivityIndicatorVisible {
+//                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+//            }
             hud.removeFromSuperview()
         }
     }

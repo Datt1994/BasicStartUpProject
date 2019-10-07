@@ -1,9 +1,9 @@
 //
 //  ViewExtension.swift
-//  
+//  coinbidz
 //
 //  Created by datt on 03/01/18.
-//  Copyright © 2018 Datt. All rights reserved.
+//  Copyright © 2018 zaptechsolutions. All rights reserved.
 //
 
 import UIKit
@@ -103,6 +103,7 @@ private var topLineColorAssociatedKey : UIColor = .black
 private var rightLineColorAssociatedKey : UIColor = .black
 private var leftLineColorAssociatedKey : UIColor = .black
 extension UIView {
+    
     @IBInspectable var bottomLineColor: UIColor {
         get {
             if let color = objc_getAssociatedObject(self, &bottomLineColorAssociatedKey) as? UIColor {
@@ -194,6 +195,7 @@ extension UIView {
         border.backgroundColor = color.cgColor
         border.frame = CGRect(x: 0, y : 0,width: self.frame.size.width, height: width)
         self.layer.addSublayer(border)
+        self.addObserver(self, forKeyPath: #keyPath(UIView.bounds), options: .new, context: UnsafeMutableRawPointer(bitPattern: 1111) )
     }
     
     func addRightBorderWithColor(color: UIColor, width: CGFloat) {
@@ -203,6 +205,7 @@ extension UIView {
         border.backgroundColor = color.cgColor
         border.frame = CGRect(x: self.frame.size.width - width, y: 0, width : width, height :self.frame.size.height)
         self.layer.addSublayer(border)
+         self.addObserver(self, forKeyPath: #keyPath(UIView.bounds), options: .new, context: UnsafeMutableRawPointer(bitPattern: 2222) )
     }
     
     func addBottomBorderWithColor(color: UIColor, width: CGFloat) {
@@ -212,8 +215,8 @@ extension UIView {
         border.backgroundColor = color.cgColor
         border.frame = CGRect(x: 0, y: self.frame.size.height - width,width : self.frame.size.width,height: width)
         self.layer.addSublayer(border)
+        self.addObserver(self, forKeyPath: #keyPath(UIView.bounds), options: .new, context: UnsafeMutableRawPointer(bitPattern: 3333) )
     }
-    
     func addLeftBorderWithColor(color: UIColor, width: CGFloat) {
         let border = CALayer()
         border.name = "leftBorderLayer"
@@ -221,6 +224,42 @@ extension UIView {
         border.backgroundColor = color.cgColor
         border.frame = CGRect(x:0, y:0,width : width, height : self.frame.size.height)
         self.layer.addSublayer(border)
+        self.addObserver(self, forKeyPath: #keyPath(UIView.bounds), options: .new, context: UnsafeMutableRawPointer(bitPattern: 4444) )
+    }
+    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+       
+        if let objectView = object as? UIView,
+            objectView === self,
+            keyPath == #keyPath(UIView.bounds) {
+            switch context {
+            case UnsafeMutableRawPointer(bitPattern: 1111):
+                for border in self.layer.sublayers ?? [] {
+                    if border.name == "topBorderLayer" {
+                        border.frame = CGRect(x: 0, y : 0,width: self.frame.size.width, height: border.frame.height)
+                    }
+                }
+            case UnsafeMutableRawPointer(bitPattern: 2222):
+                for border in self.layer.sublayers ?? [] {
+                    if border.name == "rightBorderLayer" {
+                         border.frame = CGRect(x: self.frame.size.width - border.frame.width, y: 0, width : border.frame.width, height :self.frame.size.height)
+                    }
+                }
+            case UnsafeMutableRawPointer(bitPattern: 3333):
+                for border in self.layer.sublayers ?? [] {
+                    if border.name == "bottomBorderLayer" {
+                        border.frame = CGRect(x: 0, y: self.frame.size.height - border.frame.height,width : self.frame.size.width,height: border.frame.height)
+                    }
+                }
+            case UnsafeMutableRawPointer(bitPattern: 4444):
+                for border in self.layer.sublayers ?? [] {
+                    if border.name == "leftBorderLayer" {
+                       border.frame = CGRect(x:0, y:0,width : border.frame.width, height : self.frame.size.height)
+                    }
+                }
+            default:
+                break
+            }
+        }
     }
     func removePreviouslyAddedLayer(name : String) {
         if self.layer.sublayers?.count ?? 0 > 0 {
@@ -536,7 +575,7 @@ public enum ShakeAnimationType {
 }
 public extension UIView {
     /// : Take screenshot of view (if applicable).
-    public var screenshot: UIImage? {
+    var screenshot: UIImage? {
         UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, 0)
         defer {
             UIGraphicsEndImageContext()
@@ -548,7 +587,7 @@ public extension UIView {
         return UIGraphicsGetImageFromCurrentImageContext()
     }
     /// : Get view's parent view controller
-    public var parentViewController: UIViewController? {
+    var parentViewController: UIViewController? {
         weak var parentResponder: UIResponder? = self
         while parentResponder != nil {
             parentResponder = parentResponder!.next
@@ -559,7 +598,7 @@ public extension UIView {
         return nil
     }
     /// : Remove all subviews in view.
-    public func removeSubviews() {
+    func removeSubviews() {
         subviews.forEach({$0.removeFromSuperview()})
     }
     
@@ -571,7 +610,7 @@ public extension UIView {
     ///   - animated: set true to animate rotation (default is true).
     ///   - duration: animation duration in seconds (default is 1 second).
     ///   - completion: optional completion handler to run with animation finishes (default is nil).
-    public func rotate(byAngle angle: CGFloat, ofType type: AngleUnit, animated: Bool = false, duration: TimeInterval = 1, completion: ((Bool) -> Void)? = nil) {
+    func rotate(byAngle angle: CGFloat, ofType type: AngleUnit, animated: Bool = false, duration: TimeInterval = 1, completion: ((Bool) -> Void)? = nil) {
         let angleWithType = (type == .degrees) ? CGFloat.pi * angle / 180.0 : angle
         let aDuration = animated ? duration : 0
         UIView.animate(withDuration: aDuration, delay: 0, options: .curveLinear, animations: { () -> Void in
@@ -586,7 +625,7 @@ public extension UIView {
     ///   - animated: set true to animate rotation (default is false).
     ///   - duration: animation duration in seconds (default is 1 second).
     ///   - completion: optional completion handler to run with animation finishes (default is nil).
-    public func rotate(toAngle angle: CGFloat, ofType type: AngleUnit, animated: Bool = false, duration: TimeInterval = 1, completion: ((Bool) -> Void)? = nil) {
+    func rotate(toAngle angle: CGFloat, ofType type: AngleUnit, animated: Bool = false, duration: TimeInterval = 1, completion: ((Bool) -> Void)? = nil) {
         let angleWithType = (type == .degrees) ? CGFloat.pi * angle / 180.0 : angle
         let aDuration = animated ? duration : 0
         UIView.animate(withDuration: aDuration, animations: {
@@ -600,7 +639,7 @@ public extension UIView {
     ///   - animated: set true to animate scaling (default is false).
     ///   - duration: animation duration in seconds (default is 1 second).
     ///   - completion: optional completion handler to run with animation finishes (default is nil).
-    public func scale(by offset: CGPoint, animated: Bool = false, duration: TimeInterval = 1, completion: ((Bool) -> Void)? = nil) {
+    func scale(by offset: CGPoint, animated: Bool = false, duration: TimeInterval = 1, completion: ((Bool) -> Void)? = nil) {
         if animated {
             UIView.animate(withDuration: duration, delay: 0, options: .curveLinear, animations: { () -> Void in
                 self.transform = self.transform.scaledBy(x: offset.x, y: offset.y)
@@ -617,7 +656,7 @@ public extension UIView {
     ///   - duration: animation duration in seconds (default is 1 second).
     ///   - animationType: shake animation type (default is .easeOut).
     ///   - completion: optional completion handler to run with animation finishes (default is nil).
-    public func shake(direction: ShakeDirection = .horizontal, duration: TimeInterval = 1, animationType: ShakeAnimationType = .easeOut, completion:(() -> Void)? = nil) {
+    func shake(direction: ShakeDirection = .horizontal, duration: TimeInterval = 1, animationType: ShakeAnimationType = .easeOut, completion:(() -> Void)? = nil) {
         
         CATransaction.begin()
         let animation: CAKeyframeAnimation

@@ -1,9 +1,9 @@
 //
 //  OptionalExtensions.swift
-//  
+//  coinbidz
 //
 //  Created by datt on 03/01/18.
-//  Copyright © 2018 Datt. All rights reserved.
+//  Copyright © 2018 zaptechsolutions. All rights reserved.
 //
 
 
@@ -22,7 +22,7 @@ public extension Optional {
 	///
 	/// - Parameter defaultValue: default value to return if self is nil.
 	/// - Returns: self if not nil or default value if nil.
-	public func unwrapped(or defaultValue: Wrapped) -> Wrapped {
+	func unwrapped(or defaultValue: Wrapped) -> Wrapped {
 		// http://www.russbishop.net/improving-optionals
 		return self ?? defaultValue
 	}
@@ -42,7 +42,7 @@ public extension Optional {
 	///		}
 	///
 	/// - Parameter block: a block to run if self is not nil.
-	public func run(_ block: (Wrapped) -> Void) {
+	func run(_ block: (Wrapped) -> Void) {
 		// http://www.russbishop.net/improving-optionals
 		_ = self.map(block)
 	}
@@ -56,7 +56,7 @@ public extension Optional {
     /// - Parameters:
     ///   - lhs: Any?
     ///   - rhs: Any?
-    public static func ??= (lhs: inout Optional, rhs: Optional) {
+    static func ??= (lhs: inout Optional, rhs: Optional) {
         guard let rhs = rhs else { return }
         lhs = rhs
     }
